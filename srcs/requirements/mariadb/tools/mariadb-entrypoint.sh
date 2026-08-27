@@ -2,13 +2,8 @@
 
 set -e
 
-# Debug: Show environment variables
-echo "=== Environment Variables ==="
-echo "MYSQL_DATABASE     : ${MYSQL_DATABASE}"
-echo "MYSQL_USER         : ${MYSQL_USER}"
-echo "MYSQL_PASSWORD     : ${MYSQL_PASSWORD}"
-echo "MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}"
-echo "=============================="
+mkdir -p /run/mysqld
+chown -R mysql:mysql /run/mysqld /var/lib/mysql
 
 # Check first run: listen on all interfaces: 0.0.0.0
 if [ ! -e /etc/.mariadb_firstrun ]; then
@@ -16,7 +11,7 @@ if [ ! -e /etc/.mariadb_firstrun ]; then
 	[mysqld]
 	bind-address=0.0.0.0
 	skip-networking=0
-	EOF
+EOF
 	touch /etc/.mariadb_firstrun
 fi
 
@@ -63,4 +58,6 @@ fi
 
 echo "Starting MariaDB in foreground..."
 # Start MariaDB in foreground
-exec mysqld_safe
+exec mariadbd --user=mysql \
+--datadir=/var/lib/mysql \
+    --socket=/run/mysqld/mysqld.sock
