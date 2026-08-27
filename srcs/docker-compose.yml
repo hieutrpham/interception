@@ -55,7 +55,7 @@ services:
       - .env
     build: requirements/nginx
     ports:
-      - "443:8443"
+      - "443:443"
     volumes:
       - wordpress:/var/www/html
     networks:

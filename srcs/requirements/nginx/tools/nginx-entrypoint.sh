@@ -14,8 +14,8 @@ if [ ! -e /etc/.firstrun ]; then
     # to the WordPress container's php-fpm process
     cat << EOF >> /etc/nginx/http.d/default.conf
 server {
-    listen 8443 ssl http2;
-    listen [::]:8443 ssl http2;
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
     server_name $DOMAIN_NAME;
 
     ssl_certificate /etc/nginx/ssl/cert.crt;

@@ -108,12 +108,11 @@ docker volume inspect <volume_name>
 ### Reset strategy
 ```sh
 # Soft reset — restart containers, keep data
-make down && make up
+make down
 
 # Hard reset — wipe everything including data on host
 make fclean
 sudo rm -rf /home/$USER/data/*
-make up
 ```
 
 ## 6. Debugging checklist

@@ -36,12 +36,8 @@ make fclean  # wipe everything including host data folders
 
 ### WordPress Administration Panel
 - URL: `https://trupham.42.fr/wp-admin`
-- Username: value from `secrets/wp_admin.txt`
-- Password: value from `secrets/wp_admin_password.txt`
 
 ## 4. Configuration
-
-### Non-sensitive configuration — `.env`
 
 Located at `srcs/.env`. Edit these values before running the project:
 
@@ -50,10 +46,6 @@ Located at `srcs/.env`. Edit these values before running the project:
 | `DOMAIN_NAME` | Your site domain | `trupham.42.fr` |
 | `WORDPRESS_TITLE` | Title shown on the WordPress site | `Inception` |
 | `LOGIN` | Your Linux username (used for data paths) | `${USER}` |
-
-### Sensitive configuration — `secrets/`
-
-Located at `secrets/` (project root). Each file contains exactly one value — no quotes, no extra spaces.
 
 | File | Description |
 |---|---|

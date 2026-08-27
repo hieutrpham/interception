@@ -44,7 +44,6 @@ Make sure the following tools are installed:
 ### Setup
 
 1. Fill in the required values described in `USER_DOC.md` for:
-   - `/secrets`
    - `.env`
 
 ### Hosts / DNS
