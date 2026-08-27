@@ -14,8 +14,8 @@ if [ ! -e /etc/.firstrun ]; then
     # to the WordPress container's php-fpm process
     cat << EOF >> /etc/nginx/http.d/default.conf
 server {
-    listen 443 ssl http2;
-    listen [::]:443 ssl http2;
+    listen 8443 ssl http2;
+    listen [::]:8443 ssl http2;
     server_name $DOMAIN_NAME;
 
     ssl_certificate /etc/nginx/ssl/cert.crt;
@@ -33,7 +33,7 @@ server {
     location ~ [^/]\.php(/|\$) {
         try_files \$fastcgi_script_name =404;
 
-        fastcgi_pass wordpress:9000;
+        fastcgi_pass wordpress:8000;
         fastcgi_index index.php;
         fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
         fastcgi_param PATH_INFO \$fastcgi_path_info;

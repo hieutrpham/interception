@@ -2,6 +2,8 @@ services:
   mariadb:
     container_name: mariadb
     image: mariadb
+    expose:
+      - "3307"
     init: true
     restart: always
     environment:
@@ -53,7 +55,7 @@ services:
       - .env
     build: requirements/nginx
     ports:
-      - "443:443"
+      - "443:8443"
     volumes:
       - wordpress:/var/www/html
     networks:

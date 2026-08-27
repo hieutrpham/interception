@@ -7,9 +7,11 @@ chown -R mysql:mysql /run/mysqld /var/lib/mysql
 
 # Check first run: listen on all interfaces: 0.0.0.0
 if [ ! -e /etc/.mariadb_firstrun ]; then
+	echo "=============================first run============================="
 	cat << EOF >> /etc/my.cnf.d/mariadb-server.cnf
 	[mysqld]
 	bind-address=0.0.0.0
+	port=3307
 	skip-networking=0
 EOF
 	touch /etc/.mariadb_firstrun
