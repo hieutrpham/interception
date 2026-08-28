@@ -11,7 +11,6 @@ if [ ! -e /etc/.mariadb_firstrun ]; then
 	cat << EOF >> /etc/my.cnf.d/mariadb-server.cnf
 	[mysqld]
 	bind-address=0.0.0.0
-	port=3307
 	skip-networking=0
 EOF
 	touch /etc/.mariadb_firstrun
@@ -60,6 +59,4 @@ fi
 
 echo "Starting MariaDB in foreground..."
 # Start MariaDB in foreground
-exec mariadbd --user=mysql \
---datadir=/var/lib/mysql \
-    --socket=/run/mysqld/mysqld.sock
+exec mariadbd --user=mysql --datadir=/var/lib/mysql --socket=/run/mysqld/mysqld.sock

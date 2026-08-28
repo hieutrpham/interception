@@ -1,12 +1,13 @@
 DOCKER_COMPOSE_FILE := ./srcs/docker-compose.yml
 ENV_FILE := srcs/.env
+HOME := /home/trupham
 DATA_DIR := $(HOME)/data
 WORDPRESS_DATA_DIR := $(DATA_DIR)/wordpress
 MARIADB_DATA_DIR := $(DATA_DIR)/mariadb
 
 name = inception
 
-all: create_dirs make_dir_up
+all: create_dirs make_dir_up_build
 
 build: create_dirs make_dir_up_build
 
@@ -14,7 +15,9 @@ down:
 	@printf "Stopping configuration ${name}...\n"
 	@docker-compose -f $(DOCKER_COMPOSE_FILE) --env-file $(ENV_FILE) down
 
-re: down create_dirs make_dir_up_build
+up: make_dir_up
+
+re: fclean all
 
 clean: down
 	@printf "Cleaning configuration ${name}...\n"
@@ -24,12 +27,10 @@ clean: down
 
 fclean: down
 	@printf "Total clean of all configurations docker\n"
-#	@docker stop $$(docker ps -qa)
 	@docker system prune --all --force --volumes
 	@docker network prune --force
 	@docker volume prune --force
-	@sudo rm -rf $(WORDPRESS_DATA_DIR)/*
-	@sudo rm -rf $(MARIADB_DATA_DIR)/*
+	@sudo rm -rf $(DATA_DIR)
 
 logs:
 	@docker-compose -f $(DOCKER_COMPOSE_FILE) --env-file $(ENV_FILE) logs -f

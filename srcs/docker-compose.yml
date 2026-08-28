@@ -2,8 +2,6 @@ services:
   mariadb:
     container_name: mariadb
     image: mariadb
-    expose:
-      - "3307"
     init: true
     restart: always
     environment:
