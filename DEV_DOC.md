@@ -78,7 +78,7 @@ SHOW GRANTS FOR '<db_user>'@'%';
 docker exec srcs-mariadb-1 mysql -u root -p -e "SHOW DATABASES;"
 
 # Check MariaDB is listening on port 3306
-ss -tulnp | grep 3306
+netstat -tulnp | grep 3306
 ```
 
 ### Volumes and Networks
@@ -127,7 +127,7 @@ docker compose logs nginx
 ### WordPress / PHP-FPM
 ```sh
 docker compose logs wordpress
-ss -tulnp | grep 9000
+netstat -tulnp | grep 9000
 ```
 
 ### MariaDB
