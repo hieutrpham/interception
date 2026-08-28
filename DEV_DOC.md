@@ -141,3 +141,11 @@ docker compose exec mariadb mariadb -u root -p
 ls -lah /home/$USER/data
 docker exec srcs-wordpress-1 ls -lah /var/www/html
 ```
+
+``` bash
+sudo docker stop $(sudo docker ps -qa);
+sudo docker rm $(sudo docker ps -qa);
+sudo docker rmi -f $(sudo docker images -qa);
+sudo docker volume rm $(sudo docker volume ls -q);
+sudo docker network rm $(sudo docker network ls -q);
+```
