@@ -126,3 +126,7 @@ https://trupham.42.fr/wp-admin
     mariadb-admin ping --protocol=tcp --host=mariadb -u "$MYSQL_USER" --password="$MYSQL_PASSWORD" --wait >/dev/null 2>/dev/null
     -> change to
     mariadb-admin ping --protocol=tcp --host=mariadb --port=3307 -u "$MYSQL_USER" --password="$MYSQL_PASSWORD" --wait >/dev/null 2>/dev/null
+    ``` change this in wp-config.php
+    define('WP_HOME', 'https://' . $_SERVER['HTTP_HOST']);
+    define('WP_SITEURL', 'https://' . $_SERVER['HTTP_HOST']);
+    ```
